@@ -1,0 +1,241 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://PrototypeLevel/prototypeEnvironement.tres" type="Environment" id=1]
+[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Game/Game.gd" type="Script" id=3]
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/dark/materials/material_002.tres" type="Material" id=5]
+[ext_resource path="res://Scenes/Bug/Bug.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/orange/materials/material_009.tres" type="Material" id=7]
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/light/materials/material_010.tres" type="Material" id=8]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 10, 8 )
+
+[sub_resource type="PlaneMesh" id=2]
+size = Vector2( 3, 8 )
+
+[sub_resource type="PlaneMesh" id=3]
+size = Vector2( 3, 10 )
+
+[sub_resource type="PlaneMesh" id=4]
+size = Vector2( 2, 8 )
+
+[sub_resource type="PlaneMesh" id=5]
+size = Vector2( 2.5, 9 )
+
+[sub_resource type="PlaneMesh" id=6]
+size = Vector2( 25, 18 )
+
+[sub_resource type="PlaneMesh" id=7]
+size = Vector2( 3, 25.01 )
+
+[sub_resource type="PlaneMesh" id=8]
+size = Vector2( 3, 18.01 )
+
+[node name="Test scene" type="Spatial"]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 1 )
+
+[node name="Level" type="Spatial" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StartingRoom" type="Spatial" parent="Level"]
+
+[node name="Floor" type="CSGMesh" parent="Level/StartingRoom"]
+use_collision = true
+mesh = SubResource( 1 )
+material = ExtResource( 5 )
+
+[node name="Wall1" type="CSGMesh" parent="Level/StartingRoom"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -5, 1.5, 0 )
+use_collision = true
+mesh = SubResource( 2 )
+material = ExtResource( 8 )
+
+[node name="Wall2" type="CSGMesh" parent="Level/StartingRoom"]
+transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 5, 1.5, 0 )
+use_collision = true
+mesh = SubResource( 2 )
+material = ExtResource( 8 )
+
+[node name="Wall3" type="CSGMesh" parent="Level/StartingRoom"]
+transform = Transform( 1.64203e-15, -4.56956e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.56956e-08, 0, 1.5, -4 )
+use_collision = true
+mesh = SubResource( 3 )
+material = ExtResource( 8 )
+
+[node name="CSGBox" type="CSGBox" parent="Level/StartingRoom/Wall3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.452063, -0.000314713, -0.1587 )
+operation = 2
+width = 2.20233
+height = 0.415677
+depth = 1.993
+
+[node name="Wall4" type="CSGMesh" parent="Level/StartingRoom"]
+transform = Transform( 2.17934e-15, -4.17272e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.17272e-08, 0, 1.5, 4 )
+operation = 1
+use_collision = true
+mesh = SubResource( 3 )
+material = ExtResource( 8 )
+
+[node name="Corridor" type="Spatial" parent="Level"]
+
+[node name="Floor" type="CSGMesh" parent="Level/Corridor"]
+transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0.158487, -1.01106, -7.77637 )
+use_collision = true
+mesh = SubResource( 4 )
+material = ExtResource( 5 )
+
+[node name="CSGBox" type="CSGBox" parent="Level/Corridor/Floor"]
+transform = Transform( 1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0.266073, 1.12446, 4.85609 )
+operation = 2
+width = 3.06829
+height = 2.74016
+depth = 1.26024
+material = ExtResource( 5 )
+
+[node name="CSGBox2" type="CSGBox" parent="Level/Corridor/Floor"]
+transform = Transform( 1, 0, 0, 0, 0.965927, -0.258819, 0, 0.258819, 0.965927, 0.266073, -0.207653, -3.88197 )
+operation = 2
+width = 3.06829
+height = 0.385176
+depth = 0.869533
+material = ExtResource( 5 )
+
+[node name="Roof" type="CSGMesh" parent="Level/Corridor"]
+transform = Transform( -1, 8.44439e-08, 2.26267e-08, -7.57103e-08, -0.965926, 0.258819, 4.37114e-08, 0.258819, 0.965926, 0.158487, 1.55862, -7.77637 )
+use_collision = true
+mesh = SubResource( 4 )
+material = ExtResource( 8 )
+
+[node name="CSGBox" type="CSGBox" parent="Level/Corridor/Roof"]
+transform = Transform( -1, -7.57103e-08, 4.37114e-08, 8.44439e-08, -0.965926, 0.258819, 2.26267e-08, 0.258819, 0.965926, -0.266073, 0.230497, -0.0156131 )
+operation = 1
+width = 3.06829
+height = 3.0427
+depth = 7.46083
+material = ExtResource( 5 )
+
+[node name="Wall1" type="CSGMesh" parent="Level/Corridor"]
+transform = Transform( 4.37114e-08, -1, -8.74228e-08, -0.965926, -1.95953e-08, -0.258819, 0.258819, 9.57573e-08, -0.965926, 1.15687, 0.227271, -7.92993 )
+use_collision = true
+mesh = SubResource( 5 )
+material = ExtResource( 8 )
+
+[node name="CSGBox" type="CSGBox" parent="Level/Corridor/Wall1"]
+transform = Transform( 4.37114e-08, -0.965926, 0.258819, -1, -1.95953e-08, 9.57573e-08, -8.74228e-08, -0.258819, -0.965926, 0.11809, 0.749286, -4.70878 )
+operation = 2
+width = 3.06829
+height = 2.74016
+depth = 1.26024
+
+[node name="CSGBox2" type="CSGBox" parent="Level/Corridor/Wall1"]
+transform = Transform( 4.37114e-08, -0.965927, 0.258819, -1, -1.95953e-08, 9.57574e-08, -8.74228e-08, -0.258819, -0.965927, -0.155575, 0.749286, 4.36541 )
+operation = 2
+width = 3.06829
+height = 2.78114
+depth = 1.26024
+material = ExtResource( 5 )
+
+[node name="Wall2" type="CSGMesh" parent="Level/Corridor"]
+transform = Transform( -6.63381e-08, 1, 1.71867e-07, -0.965926, -1.0856e-07, 0.258819, 0.258819, -1.48841e-07, 0.965926, -0.843538, 0.227271, -7.92993 )
+use_collision = true
+mesh = SubResource( 5 )
+material = ExtResource( 8 )
+
+[node name="CSGBox" type="CSGBox" parent="Level/Corridor/Wall2"]
+transform = Transform( -6.63381e-08, -0.965926, 0.258819, 1, -1.0856e-07, -1.48841e-07, 1.71867e-07, 0.258819, 0.965926, 0.118091, 1.2681, 4.70878 )
+operation = 2
+width = 3.06829
+height = 2.74016
+depth = 1.26024
+
+[node name="CSGBox2" type="CSGBox" parent="Level/Corridor/Wall2"]
+transform = Transform( -6.63381e-08, -0.965927, 0.258819, 1, -1.0856e-07, -1.48841e-07, 1.71867e-07, 0.258819, 0.965927, -0.153751, 1.2681, -4.3586 )
+operation = 2
+width = 3.06829
+height = 2.78114
+depth = 1.26024
+material = ExtResource( 5 )
+
+[node name="EnemyRoom" type="Spatial" parent="Level"]
+
+[node name="Floor" type="CSGMesh" parent="Level/EnemyRoom"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.84181, -2.01921, -20.5427 )
+use_collision = true
+mesh = SubResource( 6 )
+material = ExtResource( 5 )
+
+[node name="Wall1" type="CSGMesh" parent="Level/EnemyRoom"]
+transform = Transform( 2.17934e-15, -4.17272e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.17272e-08, -6.85998, -0.524234, -11.5389 )
+operation = 1
+use_collision = true
+mesh = SubResource( 7 )
+material = ExtResource( 8 )
+
+[node name="CSGBox" type="CSGBox" parent="Level/EnemyRoom/Wall1"]
+transform = Transform( 1, 8.74228e-08, -3.82137e-15, 8.74228e-08, -1, 8.74228e-08, 3.1106e-15, -8.74228e-08, -1, 0.443395, -0.0830956, 7.0243 )
+operation = 2
+width = 2.20233
+height = 0.415677
+depth = 1.99
+
+[node name="Wall2" type="CSGMesh" parent="Level/EnemyRoom"]
+transform = Transform( -6.00071e-15, 1.2915e-07, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, 1.2915e-07, -6.85998, -0.524234, -29.5389 )
+operation = 1
+use_collision = true
+mesh = SubResource( 7 )
+material = ExtResource( 8 )
+
+[node name="Wall3" type="CSGMesh" parent="Level/EnemyRoom"]
+transform = Transform( 4.37114e-08, -1, -2.60284e-07, -1, -4.37114e-08, 0, -1.17328e-14, 2.60284e-07, -1, 5.64348, -0.524234, -20.5375 )
+operation = 1
+use_collision = true
+mesh = SubResource( 8 )
+material = ExtResource( 8 )
+
+[node name="Wall4" type="CSGMesh" parent="Level/EnemyRoom"]
+transform = Transform( -4.37114e-08, 1, 1.72861e-07, -1, -4.37114e-08, 0, 7.9114e-15, -1.72861e-07, 1, -19.3565, -0.524234, -20.5375 )
+operation = 1
+use_collision = true
+mesh = SubResource( 8 )
+material = ExtResource( 8 )
+
+[node name="Obstacles" type="Spatial" parent="Level/EnemyRoom"]
+
+[node name="LowWall" type="CSGBox" parent="Level/EnemyRoom/Obstacles"]
+transform = Transform( 0.937337, 0, 0.348425, 0, 1, 0, -0.348425, 0, 0.937337, -5.2648, -1.75762, -17.2652 )
+use_collision = true
+width = 1.2715
+height = 0.54536
+depth = 5.20996
+material = ExtResource( 7 )
+
+[node name="HighWall" type="CSGBox" parent="Level/EnemyRoom/Obstacles"]
+transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -6.27397, -1.33212, -25.0296 )
+use_collision = true
+width = 1.2715
+height = 1.44626
+depth = 5.49817
+material = ExtResource( 7 )
+
+[node name="Enemies" type="Spatial" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Bug" parent="Enemies" instance=ExtResource( 6 )]
+transform = Transform( -2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -14.7339, -1.90629, -19.8313 )
+
+[node name="Bug2" parent="Enemies" instance=ExtResource( 6 )]
+transform = Transform( -0.220643, 0, -0.448683, 0, 0.5, 0, 0.448683, 0, -0.220643, -12.7514, -1.90629, -23.8194 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.77, 0 )
