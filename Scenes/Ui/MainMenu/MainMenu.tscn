@@ -1,0 +1,295 @@
+[gd_scene load_steps=33 format=2]
+
+[ext_resource path="res://Scenes/Ui/Button/Button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Player/PlayerController/PlayerController.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Ui/MainMenu/MainMenu.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Player/Gun/Gun.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Bug/Bug.tscn" type="PackedScene" id=5]
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/dark/materials/material_002.tres" type="Material" id=7]
+[ext_resource path="res://Scenes/Bug/Materials/BugSecondaryMaterial.tres" type="Material" id=9]
+[ext_resource path="res://Scenes/Bug/Materials/BugBodyMaterial.tres" type="Material" id=10]
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/light/materials/material_010.tres" type="Material" id=11]
+[ext_resource path="res://Assets/Fonts/Vegur/Vegur-Regular.otf" type="DynamicFontData" id=12]
+[ext_resource path="res://Scenes/Ui/WindowDialogue/QuitDialog.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/Fonts/Vegur/Vegur-Bold.otf" type="DynamicFontData" id=14]
+[ext_resource path="res://Scenes/Ui/Button/StyleBoxNormal.tres" type="StyleBox" id=15]
+[ext_resource path="res://Scenes/Ui/Button/StyleBoxPressed.tres" type="StyleBox" id=16]
+[ext_resource path="res://Scenes/Ui/Button/StyleBoxHover.tres" type="StyleBox" id=17]
+[ext_resource path="res://Assets/Fonts/Scratched Letters.otf" type="DynamicFontData" id=18]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 100, 100 )
+
+[sub_resource type="CapsuleShape" id=2]
+height = 0.465232
+
+[sub_resource type="PlaneMesh" id=3]
+size = Vector2( 20, 2 )
+
+[sub_resource type="Shader" id=4]
+code = "shader_type canvas_item;
+
+uniform float blur_amount : hint_range(-2.0, 10.0);
+uniform float mix_amount : hint_range(0.0, 1.0);
+uniform vec4 color_over : hint_color;
+
+void fragment() {
+	vec4 blurred = textureLod(SCREEN_TEXTURE, SCREEN_UV, blur_amount);
+	vec4 fin = mix(blurred, color_over, mix_amount);
+	COLOR = fin;
+}"
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
+shader_param/blur_amount = 3.058
+shader_param/mix_amount = null
+shader_param/color_over = null
+
+[sub_resource type="DynamicFont" id=7]
+size = 35
+font_data = ExtResource( 14 )
+
+[sub_resource type="AtlasTexture" id=8]
+
+[sub_resource type="AtlasTexture" id=6]
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.419608, 0.419608, 0.419608, 0.54902 )
+border_width_top = 20
+border_color = Color( 0.192157, 0.192157, 0.192157, 1 )
+expand_margin_top = 20.0
+shadow_offset = Vector2( 1, 1 )
+
+[sub_resource type="DynamicFont" id=10]
+font_data = ExtResource( 12 )
+
+[sub_resource type="Theme" id=11]
+resource_local_to_scene = true
+default_font = SubResource( 10 )
+Button/fonts/font = SubResource( 7 )
+Button/styles/hover = ExtResource( 17 )
+Button/styles/normal = ExtResource( 15 )
+Button/styles/pressed = ExtResource( 16 )
+WindowDialog/icons/close = SubResource( 8 )
+WindowDialog/icons/close_highlight = SubResource( 6 )
+WindowDialog/styles/panel = SubResource( 9 )
+
+[sub_resource type="Theme" id=12]
+resource_local_to_scene = true
+default_font = SubResource( 10 )
+Button/fonts/font = SubResource( 7 )
+Button/styles/hover = ExtResource( 17 )
+Button/styles/normal = ExtResource( 15 )
+Button/styles/pressed = ExtResource( 16 )
+WindowDialog/icons/close = SubResource( 8 )
+WindowDialog/icons/close_highlight = SubResource( 6 )
+WindowDialog/styles/panel = SubResource( 9 )
+
+[sub_resource type="Theme" id=13]
+resource_local_to_scene = true
+default_font = SubResource( 10 )
+Button/fonts/font = SubResource( 7 )
+Button/styles/hover = ExtResource( 17 )
+Button/styles/normal = ExtResource( 15 )
+Button/styles/pressed = ExtResource( 16 )
+WindowDialog/icons/close = SubResource( 8 )
+WindowDialog/icons/close_highlight = SubResource( 6 )
+WindowDialog/styles/panel = SubResource( 9 )
+
+[sub_resource type="Theme" id=14]
+resource_local_to_scene = true
+default_font = SubResource( 10 )
+Button/fonts/font = SubResource( 7 )
+Button/styles/hover = ExtResource( 17 )
+Button/styles/normal = ExtResource( 15 )
+Button/styles/pressed = ExtResource( 16 )
+WindowDialog/icons/close = SubResource( 8 )
+WindowDialog/icons/close_highlight = SubResource( 6 )
+WindowDialog/styles/panel = SubResource( 9 )
+
+[sub_resource type="Theme" id=15]
+resource_local_to_scene = true
+default_font = SubResource( 10 )
+Button/fonts/font = SubResource( 7 )
+Button/styles/hover = ExtResource( 17 )
+Button/styles/normal = ExtResource( 15 )
+Button/styles/pressed = ExtResource( 16 )
+WindowDialog/icons/close = SubResource( 8 )
+WindowDialog/icons/close_highlight = SubResource( 6 )
+WindowDialog/styles/panel = SubResource( 9 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 130
+outline_size = 2
+outline_color = Color( 0.0352941, 0.172549, 0.0666667, 1 )
+font_data = ExtResource( 18 )
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="3DBlurredBackground" type="CanvasLayer" parent="."]
+
+[node name="BackgroundScene" type="Spatial" parent="3DBlurredBackground"]
+
+[node name="CSGMesh" type="CSGMesh" parent="3DBlurredBackground/BackgroundScene"]
+mesh = SubResource( 1 )
+material = ExtResource( 7 )
+
+[node name="Bug" parent="3DBlurredBackground/BackgroundScene" instance=ExtResource( 5 )]
+transform = Transform( 0.34641, 0, 0.2, 0, 0.4, 0, -0.2, 0, 0.34641, 0.759435, 0.0925092, 3.40292 )
+script = null
+
+[node name="Bug2" type="KinematicBody" parent="3DBlurredBackground/BackgroundScene" groups=["Enemy"]]
+transform = Transform( 0.34641, 0, 0.2, 0, 0.4, 0, -0.2, 0, 0.34641, 1.63586, 0.0925087, 3.46321 )
+
+[node name="DeadBugModel" type="Spatial" parent="3DBlurredBackground/BackgroundScene/Bug2"]
+transform = Transform( 0.369049, 0, -0.92941, 0, 0.999999, 0, 0.92941, 0, 0.369049, -1.47296, 0, -14.307 )
+
+[node name="Antenna1" type="CSGCylinder" parent="3DBlurredBackground/BackgroundScene/Bug2/DeadBugModel"]
+transform = Transform( -0.156728, 0.987642, 0, -0.987642, -0.156728, 0, 0, 0, 1, 0.667593, 0.197892, -0.593232 )
+radius = 0.078
+material = ExtResource( 9 )
+
+[node name="Antenna2" type="CSGCylinder" parent="3DBlurredBackground/BackgroundScene/Bug2/DeadBugModel"]
+transform = Transform( 0.0895949, -0.772925, 0.62814, 0.993349, 0.115146, 0, -0.0723275, 0.623962, 0.778101, -0.921738, -0.0775524, -0.593232 )
+radius = 0.078
+material = ExtResource( 9 )
+
+[node name="Leg1" type="CSGBox" parent="3DBlurredBackground/BackgroundScene/Bug2/DeadBugModel"]
+transform = Transform( -0.0856083, 0, 0.864239, 0, 1, 0, -0.996329, 0, -0.0742584, -0.958822, -0.125914, 0.75159 )
+width = 0.159312
+height = 0.215894
+material = ExtResource( 9 )
+
+[node name="Leg2" type="CSGBox" parent="3DBlurredBackground/BackgroundScene/Bug2/DeadBugModel"]
+transform = Transform( 0.965926, 0, 0.224506, 0, 1, 0, -0.258819, 0, 0.837867, 0.565069, -0.125914, 0.217145 )
+width = 0.159312
+height = 0.215894
+material = ExtResource( 9 )
+
+[node name="Body" type="CSGSphere" parent="3DBlurredBackground/BackgroundScene/Bug2/DeadBugModel"]
+transform = Transform( 0.865037, 0.501664, -0.00857495, -0.501654, 0.865062, 0.00427393, 0.00735404, 0.000464944, 1.30019, 0, 0, 0 )
+radial_segments = 20
+rings = 8
+material = ExtResource( 10 )
+
+[node name="CSGBox" type="CSGBox" parent="3DBlurredBackground/BackgroundScene/Bug2/DeadBugModel/Body"]
+transform = Transform( 0.866032, -0.499986, 0.00121775, 0.499987, 0.866025, -0.00361468, 0.000579, 0.00287588, 0.769087, 0.305958, -0.487309, 0.140738 )
+operation = 2
+height = 1.20165
+depth = 3.19081
+
+[node name="CSGSphere" type="CSGSphere" parent="3DBlurredBackground/BackgroundScene/Bug2/DeadBugModel/Body"]
+transform = Transform( 1.42311, -0.377572, 0.00665711, 0.823557, 0.65741, -0.00529079, 0.00469042, 0.00272456, 1.77229, -0.603337, 0.930741, -0.0391578 )
+operation = 2
+radius = 0.995362
+material = ExtResource( 10 )
+
+[node name="CollisionShape" type="CollisionShape" parent="3DBlurredBackground/BackgroundScene/Bug2"]
+transform = Transform( 0.951773, 0, 0, 0, 0.600817, 0, 0, 0, 1.0167, 0, 0.388045, 0 )
+shape = SubResource( 2 )
+
+[node name="Player" type="Spatial" parent="3DBlurredBackground/BackgroundScene"]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.772228, 0 )
+
+[node name="PlayerController" parent="3DBlurredBackground/BackgroundScene/Player" instance=ExtResource( 2 )]
+script = null
+
+[node name="Gun" parent="3DBlurredBackground/BackgroundScene/Player" instance=ExtResource( 4 )]
+transform = Transform( 0.965376, 0.038958, 0.257933, 1.55779e-08, 0.988784, -0.149345, -0.260858, 0.144175, 0.954549, 0, 0.248022, 0 )
+script = null
+
+[node name="Camera" type="Camera" parent="3DBlurredBackground/BackgroundScene"]
+transform = Transform( 0.421004, 0.221709, -0.879546, 0, 0.969668, 0.244426, 0.907059, -0.102904, 0.408234, -2.88781, 1.11655, 2.32714 )
+
+[node name="CSGMesh2" type="CSGMesh" parent="3DBlurredBackground/BackgroundScene"]
+transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1, -4.0437 )
+mesh = SubResource( 3 )
+material = ExtResource( 11 )
+
+[node name="CSGMesh3" type="CSGMesh" parent="3DBlurredBackground/BackgroundScene"]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 5.47338, 1, 1.72071 )
+mesh = SubResource( 3 )
+material = ExtResource( 11 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 305, 814 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenuButtons" type="VBoxContainer" parent="ColorRect"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 176.0
+margin_top = -389.0
+margin_right = 526.0
+margin_bottom = -99.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" parent="ColorRect/MainMenuButtons" instance=ExtResource( 1 )]
+theme = SubResource( 11 )
+
+[node name="Settings" parent="ColorRect/MainMenuButtons" instance=ExtResource( 1 )]
+margin_top = 75.0
+margin_bottom = 140.0
+theme = SubResource( 12 )
+text = "   SETTINGS"
+
+[node name="Credits" parent="ColorRect/MainMenuButtons" instance=ExtResource( 1 )]
+margin_top = 150.0
+margin_bottom = 215.0
+theme = SubResource( 13 )
+text = "   CREDITS"
+
+[node name="Quit" parent="ColorRect/MainMenuButtons" instance=ExtResource( 1 )]
+margin_top = 225.0
+margin_bottom = 290.0
+theme = SubResource( 14 )
+text = "   QUIT"
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+material = SubResource( 5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 305, 814 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitDialog" parent="ColorRect2" instance=ExtResource( 13 )]
+theme = SubResource( 15 )
+
+[node name="Label" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+margin_left = 3.0
+margin_top = 103.0
+margin_right = 3.0
+margin_bottom = 243.0
+custom_colors/font_color = Color( 0.0392157, 0.0470588, 0.0392157, 1 )
+custom_fonts/font = SubResource( 16 )
+text = "INSECTOPHOBIA"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_up" from="ColorRect/MainMenuButtons/Play" to="." method="_on_Play_button_up"]
+[connection signal="button_up" from="ColorRect/MainMenuButtons/Settings" to="." method="_on_Settings_button_up"]
+[connection signal="button_up" from="ColorRect/MainMenuButtons/Credits" to="." method="_on_Credits_button_up"]
+[connection signal="button_up" from="ColorRect/MainMenuButtons/Quit" to="." method="_on_Quit_button_up"]
+[connection signal="popup_hide" from="ColorRect2/QuitDialog" to="." method="_on_QuitDialog_popup_hide"]

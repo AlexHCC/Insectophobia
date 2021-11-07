@@ -18,7 +18,7 @@ transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0 )
 script = ExtResource( 2 )
 
 [node name="GunMesh" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00730991, 1.813 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.813 )
 mesh = SubResource( 1 )
 skeleton = NodePath("")
 material/0 = null
@@ -27,3 +27,10 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, -0.258819, -0.965926, 0, 0.965926, -0.258819, 0, -0.253997, -0.359915 )
 mesh = SubResource( 2 )
 material/0 = null
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.09466e-07, 0, 2.34187 )
+enabled = true
+cast_to = Vector3( 0, 0, 1 )
+debug_shape_custom_color = Color( 0.192157, 0.494118, 0.211765, 1 )
+debug_shape_thickness = 5.0

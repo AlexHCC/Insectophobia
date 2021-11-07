@@ -2,7 +2,7 @@ extends Spatial
 
 
 #Variables
-export var controllerMouseSpeed = 5.0
+export var controllerMouseSpeed = 10.0
 
 var _hasFocus = true
 var _isMouseOnWindow = true
@@ -14,24 +14,14 @@ func _ready():
 
 
 func _physics_process(delta):
-	#Basic 8-direction controller movement
-	#Need to make it multidirectional 
+	#Basic controller movement
 	#Need to add better camera rotation controls 
 	_handle_mouse_to_key_input()
 
 
 func _handle_mouse_to_key_input():
 	#Get mouse offset based on input
-	var mouseOffset = Vector2.ZERO
-	if Input.is_action_pressed("mouse_up"):
-		mouseOffset += Vector2.UP
-	if Input.is_action_pressed("mouse_down"):
-		mouseOffset += Vector2.DOWN
-	if Input.is_action_pressed("mouse_left"):
-		mouseOffset += Vector2.LEFT
-	if Input.is_action_pressed("mouse_right"):
-		mouseOffset += Vector2.RIGHT
-	mouseOffset = (mouseOffset.normalized() * controllerMouseSpeed).round()
+	var mouseOffset = (Input.get_vector("mouse_left", "mouse_right", "mouse_up", "mouse_down")*controllerMouseSpeed).round()
 	
 	#Check focus and move mouse inside window
 	var newMousePos = get_viewport().get_mouse_position() + mouseOffset

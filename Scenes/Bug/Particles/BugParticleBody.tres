@@ -1,0 +1,38 @@
+[gd_resource type="ParticlesMaterial" load_steps=7 format=2]
+
+[sub_resource type="Curve" id=10]
+min_value = -1.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=11]
+curve = SubResource( 10 )
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0.256329, 0.217045 ), 0.0, 0.0, 0, 0, Vector2( 0.990506, 0.526136 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+curve = SubResource( 8 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0.056962, 0.455682 ), 0.0, 0.0, 0, 0, Vector2( 0.509494, 0.810227 ), 0.0, 0.0, 0, 0, Vector2( 0.898734, 0.519318 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[resource]
+lifetime_randomness = 0.41
+trail_divisor = 2
+trail_size_modifier = SubResource( 5 )
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3( 0, 1, 0 )
+initial_velocity = 5.0
+initial_velocity_random = 0.15
+angular_velocity = 497.14
+linear_accel = 2.0
+radial_accel = 5.0
+scale_curve = SubResource( 9 )
+color = Color( 0.603922, 0.27451, 0.27451, 1 )
+hue_variation = 0.63
+hue_variation_random = 0.22
+hue_variation_curve = SubResource( 11 )

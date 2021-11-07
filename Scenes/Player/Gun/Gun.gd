@@ -1,6 +1,8 @@
 extends Position3D
 
 #Variables
+export var rayLength = 10000
+export var shootingDepth = 0.1
 export var cameraPath :NodePath
 export var playerControllerPath :NodePath
 
@@ -16,6 +18,39 @@ func _ready():
 
 
 func _physics_process(delta):
+	_translateGun()
+	_shootGun_shootGun()
+
+
+func _shootGun_shootGun():
+	var spaceState = get_world().direct_space_state
+	
+	if Input.is_action_just_pressed("gun_shoot"):
+		print("Click")
+		#Get shooting point
+		var from = _camera.project_ray_origin(get_viewport().get_mouse_position())
+		var to = from + _camera.project_ray_normal(get_viewport().get_mouse_position()) * rayLength
+		var cameraRay = spaceState.intersect_ray(from, to)
+		
+		#Shoot ray
+		if cameraRay:
+			var extendedCameraRay = (cameraRay.position - _camera.get_parent().to_global(_camera.translation)).normalized() * shootingDepth
+			$RayCast.cast_to = $RayCast.to_local(extendedCameraRay + cameraRay.position)
+			
+			#Rotate gun
+			$GunMesh.look_at(cameraRay.position, Vector3.UP)
+			$GunMesh.rotate_object_local(Vector3(0, 1, 0), PI)
+			$GunMesh.rotation.y = 0
+			$GunMesh.rotation.x = clamp($GunMesh.rotation.x, deg2rad(-70), deg2rad(70))
+			
+			#Check for collisions with enemies
+			if $RayCast.get_collider() and $RayCast.get_collider().is_in_group("Enemy"):
+				$RayCast.get_collider().hit(500)
+			#Send damage and event
+			#Play animation and sounds
+
+
+func _translateGun():
 	#Translation
 	self.translation = get_parent().to_local(_gunPivot.get_parent().to_global(_gunPivot.translation))
 	

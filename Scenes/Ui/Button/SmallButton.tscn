@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Fonts/Vegur/Vegur-Bold.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scenes/Ui/Button/StyleBoxNormal.tres" type="StyleBox" id=2]
+[ext_resource path="res://Scenes/Ui/Button/StyleBoxPressed.tres" type="StyleBox" id=3]
+[ext_resource path="res://Scenes/Ui/Button/StyleBoxHover.tres" type="StyleBox" id=4]
+
+[sub_resource type="DynamicFont" id=2]
+size = 35
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=1]
+Button/fonts/font = SubResource( 2 )
+Button/styles/hover = ExtResource( 4 )
+Button/styles/normal = ExtResource( 2 )
+Button/styles/pressed = ExtResource( 3 )
+
+[node name="Button" type="Button"]
+margin_right = 350.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 350, 65 )
+focus_mode = 0
+theme = SubResource( 1 )
+enabled_focus_mode = 0
+text = "    PLAY"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
